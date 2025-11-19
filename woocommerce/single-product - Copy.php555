@@ -1,0 +1,632 @@
+<?php
+
+/**
+ * The Template for displaying all single products
+ *
+ * This template can be overridden by copying it to yourtheme/woocommerce/single-product.php.
+ *
+ * HOWEVER, on occasion WooCommerce will need to update template files and you
+ * (the theme developer) will need to copy the new files to your theme to
+ * maintain compatibility. We try to do this as little as possible, but it does
+ * happen. When this occurs the version of the template file will be bumped and
+ * the readme will list any important changes.
+ *
+ * @see         https://woocommerce.com/document/template-structure/
+ * @package     WooCommerce\Templates
+ * @version     1.6.4
+ */
+
+if (! defined('ABSPATH')) {
+	exit; // Exit if accessed directly
+}
+
+get_header('shop'); ?>
+<div class="container single_product_container ">
+	<div class="cat_header text-left text-black p-40">
+		<?php
+		/**
+		 * woocommerce_before_main_content hook.
+		 *
+		 * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
+		 * @hooked woocommerce_breadcrumb - 20
+		 */
+		do_action('woocommerce_before_main_content');
+
+		// ===== util: get primary brand term (first) =====
+		$brand_term = false;
+		if (function_exists('wc_get_product_terms')) {
+			$brand_terms = wc_get_product_terms(get_the_ID(), 'product_brand');
+			if ($brand_terms) {
+				$brand_term = $brand_terms[0];
+			}
+		}
+		?>
+	</div>
+	<div class="single_product my-5 sp_wrapper">
+		<div class="row gx-5">
+
+			<!--  LEFT COLUMN : gallery  -->
+			<div class="col-lg-8 mb-4">
+
+				<?php
+				$attachment_ids = $product->get_gallery_image_ids();
+				array_unshift($attachment_ids, $product->get_image_id()); // main first 
+				?>
+
+				<!-- desktop grid -->
+				<div class="d-none d-md-flex flex flex-wrap gap-2" id="desktop-gallery">
+					<?php foreach ($attachment_ids as $id) : ?>
+						<div class="product-image-wrapper mb-3">
+							<?php echo wp_get_attachment_image($id, 'large', false, ['class' => 'img-fluid']); ?>
+						</div>
+					<?php endforeach; ?>
+				</div>
+
+				<!-- mobile Swiper slider -->
+				<div class="d-block d-md-none">
+					<div class="swiper myProdSwiper">
+						<div class="swiper-wrapper">
+							<?php foreach ($attachment_ids as $id) : ?>
+								<div class="swiper-slide">
+									<?php echo wp_get_attachment_image($id, 'large', false, ['class' => 'img-fluid']); ?>
+								</div>
+							<?php endforeach; ?>
+						</div>
+						<div class="swiper-pagination"></div>
+					</div>
+				</div>
+
+			</div><!-- /col -->
+
+			<!--  RIGHT COLUMN : product summary  -->
+			<div class="col-lg-4">
+
+				<?php while (have_posts()) : the_post();
+					global $product; ?>
+
+					<div class="brand_box d-flex align-items-center mb-4 justify-content-between">
+						<?php if ($brand_term) : ?>
+							<div class="brand_term">
+								<?php echo esc_html($brand_term->name); ?>
+							</div>
+						<?php endif; ?>
+						<div class="d-flex gap-2">
+							<div class="icon-box d-none d-md-block">
+								<a href="#">
+									<div class="icon-holder">
+										<img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/expand-icon.png" alt="icon" />
+									</div>
+								</a>
+							</div>
+							<div class="icon-box d-none d-md-block">
+								<a href="#" class="love-btn" data-id="<?php echo esc_attr($product->get_id()); ?>">
+									<div class="icon-holder">
+										<img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/favorite2.png" alt="icon" />
+
+									</div>
+								</a>
+							</div>
+						</div>
+
+					</div>
+
+
+					<h2 class="product_title mb-2"><?php the_title(); ?></h2>
+
+					<div class="short-description "><?php the_excerpt(); ?></div>
+					<?php // Display badge
+					global $product;
+					$percent = ews_get_discount_percent();
+					?>
+					<div class="badge_box pb-1">
+						<span class="cs_badge top_badge bg_primary text-16">TOP</span>
+						<?php if ($percent): ?>
+							<span class="cs_badge discount_badge text-16">-<?php echo esc_html($percent); ?>%</span>
+						<?php endif; ?>
+					</div>
+
+					<!-- Divider -->
+					<hr class="divider my-4" />
+
+					<!-- Size attribute -->
+					<?php
+					$size_attr = $product->get_attribute('pa_dydis');
+					if ($size_attr) : ?>
+						<div class="d-flex justify-content-between align-items-center mb-2">
+							<p class="fw-semibold mb-2">Pasirinkite dydi:</p>
+							<p class="gray_text mb-0 text-14">Dydžių lentelė <img width="20" src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/what-right-icon.png" alt="info" /></p>
+						</div>
+						<div class="d-flex flex-wrap gap-2">
+							<?php
+							$sizes = explode(',', $size_attr);
+							foreach ($sizes as $size) :
+								$size = trim($size); // remove whitespace
+							?>
+								<button type="button" class="btn btn-outline-secondary size-button"><?php echo esc_html($size); ?></button>
+							<?php endforeach; ?>
+						</div>
+
+						<!-- Divider -->
+						<hr class="divider my-4" />
+					<?php endif; ?>
+
+
+					<?php
+					global $product;
+					if (has_term('tenisas', 'product_cat', $product->get_id())): ?>
+						<?php if (get_field('prideti_stygas')): ?>
+
+							<?php do_action('woocommerce_before_add_to_cart_button');  ?>
+						<?php else: ?>
+							<div class="default_string">
+								<div class="inner_flex d-flex gap-2">
+									<img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/error.png" width="24" alt="icon">
+									<aside>Gamyklinis stygų įtempimas.</aside>
+								</div>
+							</div>
+						<?php endif; ?>
+						<!-- Divider -->
+						<hr class="divider my-4" />
+					<?php endif; ?>
+
+					<!-- price -->
+					<div class="price mb-3"><?php wc_get_template('single-product/price.php'); ?></div>
+
+					<!-- qty + add‑to‑cart -->
+					<form class="cart d-flex gap-2 mb-3" action="<?php echo esc_url(apply_filters('woocommerce_add_to_cart_form_action', $product->get_permalink())); ?>" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="racket_string" id="racket_string_input" required>
+						<?php
+						woocommerce_quantity_input([
+							'input_name'  => 'quantity',   // ✅ this is the key fix
+							'input_value' => 1,
+						]);
+						?>
+						<button type="submit" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>" class="single_add_to_cart_button button alt btn btn-primary">
+							<?php echo esc_html($product->add_to_cart_text()); ?>
+						</button>
+					</form>
+
+					<!-- stock status -->
+					<?php
+
+					$status = $product->get_stock_status(); // instock | outofstock | onbackorder
+
+					switch ($status) {
+						case 'instock':
+							echo '<p class="stock in-stock"><span class="circle_icon"></span>' . __('Turime sandelyje', 'woocommerce') . '</p>';
+							break;
+
+						case 'onbackorder':
+							echo '<p class="stock on-backorder">' . __('Available on back-order', 'woocommerce') . '</p>';
+							break;
+
+						default: // outofstock
+							echo '<p class="stock out-of-stock"><span class="circle_icon red"></span>' . __('Išparduota', 'woocommerce') . '</p>';
+							break;
+					}
+					?>
+					<p class="gray_text">Pristatymas: 3-4 d.d. </p>
+
+					<!-- Divider -->
+					<hr class="divider my-4" />
+
+					<!-- Specifikacijos (all attributes) -->
+					<?php if ($product->get_attributes()) : ?>
+						<h3 class="mt-4 text-16 fw-bold mb-3">Specifikacijos</h3>
+						<dl class="specs">
+							<?php foreach ($product->get_attributes() as $attr) :
+								if ($attr->is_taxonomy()) {
+									$vals = wc_get_product_terms($product->get_id(), $attr->get_name(), ['fields' => 'names']);
+									echo '<dt>' . wc_attribute_label($attr->get_name()) . '</dt><dd>' . implode(', ', $vals) . '</dd>';
+								} else {
+									echo '<dt>' . $attr->get_name() . '</dt><dd>' . $attr->get_options()[0] . '</dd>';
+								}
+							endforeach; ?>
+						</dl>
+					<?php endif; ?>
+
+					<!-- Divider -->
+					<hr class="divider my-4" />
+
+					<!-- Aprašymas (long description) -->
+					<?php if ($post->post_content) : ?>
+						<h3 class="mt-4 text-16 fw-bold mb-3">Aprašymas</h3>
+						<div class="long-description"><?php the_content(); ?></div>
+					<?php endif; ?>
+
+					<!-- Divider -->
+					<hr class="divider my-4" />
+
+					<div class="icon_list ">
+						<div class="info m-0">
+							<div class="icon s2">
+								<img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/Delivery2.png" alt="icon-image">
+							</div>
+							<div class="text">
+								<p class="gray_text text-12">Nemokamas pristatymas ir grąžinimas</p>
+							</div>
+						</div> <!--  end info -->
+						<div class="info m-0">
+							<div class="icon s2">
+								<img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/Payment2.png" alt="icon-image">
+							</div>
+							<div class="text">
+								<p class="gray_text text-12">Garantuotas saugus
+									pirkimas</p>
+							</div>
+						</div> <!--  end info -->
+
+					</div>
+				<?php endwhile; // end loop 
+				?>
+			</div><!-- /col -->
+
+		</div><!-- /row -->
+	</div>
+	<?php
+	/**
+	 * woocommerce_after_main_content hook.
+	 *
+	 * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
+	 */
+	do_action('woocommerce_after_main_content');
+	?>
+
+	<?php
+	/**
+	 * woocommerce_sidebar hook.
+	 *
+	 * @hooked woocommerce_get_sidebar - 10
+	 */
+	// do_action('woocommerce_sidebar');
+	?>
+
+</div>
+<!-- end container -->
+
+<?php
+$section_title = "Rekomenduojamos prekės";
+$section_title2 = "Neseniai peržiūrėtos prekės";
+$background_color = "#FAFAF5";
+$background_color2 = "#fff";
+
+$product_slider = get_sub_field('product_slider');
+$layout = get_row_layout();
+$index = get_row_index();
+
+?>
+<section class="popular_product  <?php echo acf_esc_html($add_custom_class); ?>" style="background-color:<?php echo $background_color; ?>;">
+	<div class="container">
+		<div class="head_box d-flex justify-content-between align-items-start ">
+			<?php if ($section_title) : ?>
+				<h2 class="ews_title mb-5">
+					<?php echo esc_html($section_title); ?>
+				</h2>
+			<?php endif; ?>
+			<a href="<?php echo site_url(); ?>/product" class="btn btn-primary bg-white text-black see_more mt-2">Daugiau</a>
+		</div>
+		<div class="swiper-container my-swiper sl-<?php echo $layout . '-' . $index; ?>">
+			<div class="swiper-wrapper">
+				<?php
+				if ($product_slider !=  'new') {
+					// Custom WooCommerce Product Loop
+					$args = array(
+						'post_type'      => 'product',
+						'posts_per_page' => 15, // Adjust as needed
+						'meta_key'       => 'total_sales', // Sort by total sales (popular products)
+						'orderby'        => 'meta_value_num', // Order by numeric value
+						'order'          => 'DESC',
+						'post_status'    => 'publish',
+					);
+				} else {
+					// Custom WooCommerce Product Loop
+					$args = array(
+						'post_type'      => 'product',
+						'posts_per_page' => 15, // Adjust as needed
+						// 'meta_key'       => 'total_sales', // Sort by total sales (popular products)
+						'orderby'        => 'meta_value_num', // Order by numeric value
+						'order'          => 'DESC',
+						'post_status'    => 'publish',
+					);
+				}
+
+				$loop = new WP_Query($args);
+
+				if ($loop->have_posts()) :
+
+					while ($loop->have_posts()) : $loop->the_post();
+						global $product;
+				?>
+						<div class="swiper-slide ">
+							<div class="single-product">
+								<!-- Product Image -->
+								<div class="product-image">
+									<?php // Display product thumbnail
+									global $product;
+									$percent = ews_get_discount_percent($product);
+									?>
+									<div class="badge_box ">
+										<span class="cs_badge top_badge bg_primary text-14">TOP</span>
+										<?php if ($percent): ?>
+											<span class="cs_badge discount_badge text-14">-<?php echo esc_html($percent); ?>%</span>
+										<?php endif; ?>
+									</div>
+									<a href="<?php the_permalink(); ?>">
+										<?php echo woocommerce_get_product_thumbnail('medium'); ?>
+									</a>
+								</div>
+
+								<!-- Product Brand (From Taxonomy) -->
+								<div class="product-brand">
+									<?php
+									$brand_terms = get_the_terms($product->get_id(), 'product_brand'); // Change 'product_brand' to your brand taxonomy slug
+									if ($brand_terms && !is_wp_error($brand_terms)) {
+										echo '<span class="brand-name">' . esc_html($brand_terms[0]->name) . '</span>';
+									}
+									?>
+								</div>
+
+								<!-- Product Title -->
+								<h3 class="product-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+
+								<!-- Product Price -->
+								<div class="product-price">
+									<?php if ($product->is_on_sale()) : ?>
+										<span class="sale-price"><?php echo wc_price($product->get_sale_price()); ?></span>
+										<span class="regular-price"><del><?php echo wc_price($product->get_regular_price()); ?></del></span>
+									<?php else : ?>
+										<span class="sale-price"><?php echo wc_price($product->get_price()); ?></span>
+									<?php endif; ?>
+								</div>
+
+								<!-- Add to Cart Button -->
+								<div class="add-to-cart">
+									<?php woocommerce_template_loop_add_to_cart(); ?>
+								</div>
+
+								<!-- Compare Checkbox -->
+								<?php $image_url = get_the_post_thumbnail_url(get_the_ID(), 'medium'); ?>
+								<label class="compare-checkbox custom-checkbox">
+									<input type="checkbox" class="compare-product"
+										data-product-id="<?php echo esc_attr($product->get_id()); ?>"
+										data-title="<?php the_title_attribute(); ?>"
+										data-imageurl="<?php echo esc_url($image_url); ?>">
+									<span class="checkmark"></span>
+									Palyginti
+								</label>
+							</div>
+						</div>
+					<?php
+					endwhile;
+
+				else :
+					?>
+					<div class="col">
+						<h2 class="ews_title">
+							No products found.
+						</h2>
+					</div>
+				<?php
+				endif;
+
+				wp_reset_postdata();
+				?>
+			</div><!-- swiper-wrapper -->
+			<!-- Navigation -->
+			<div class="container d-flex justify-content-between align-items-center mt-5 pt-4">
+				<div class="swiper-progress-bar">
+					<span class="swiper-progress"></span>
+				</div>
+				<div class="arrow">
+					<div class="swiper-button-prev">
+						<div class="icon-box">
+							<div class="icon-holder">
+								<img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-left-black.png" alt="icon" />
+							</div>
+						</div>
+					</div>
+					<div class="swiper-button-next">
+						<div class="icon-box">
+							<div class="icon-holder">
+								<img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-right-black.png" alt="icon" />
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div><!-- end container Navigation -->
+
+		</div><!-- end swiper-container -->
+	</div>
+
+</section>
+<script>
+	// Product slider
+	document.addEventListener("DOMContentLoaded", function() {
+		document.querySelectorAll('.sl-<?php echo $layout . '-' . $index; ?>').forEach((slider) => {
+			new Swiper(slider, {
+				slidesPerView: 4, // Show 4 items at a time
+				slidesPerGroup: 1, // Move 1 item per slide
+				loop: true, // Disable looping
+				autoplay: false, // No autoplay
+				spaceBetween: 16,
+				navigation: {
+					nextEl: slider.querySelector('.sl-<?php echo $layout . '-' . $index; ?> .swiper-button-next'),
+					prevEl: slider.querySelector('.sl-<?php echo $layout . '-' . $index; ?> .swiper-button-prev'),
+				},
+				breakpoints: {
+					0: {
+						slidesPerView: 1,
+					},
+					560: {
+						slidesPerView: 2,
+					},
+					767: {
+						slidesPerView: 3,
+					},
+					1024: {
+						slidesPerView: 4,
+					},
+				},
+				on: {
+					slideChangeTransitionStart: function() {
+						let progress = (this.realIndex + 1) / this.slides.length * 100;
+						document.querySelector('.sl-<?php echo $layout . '-' . $index; ?> .swiper-progress').style.width = progress + "%";
+					}
+				}
+			});
+		});
+	});
+</script>
+
+
+<section class="popular_product  <?php echo acf_esc_html($add_custom_class); ?>" style="background-color:<?php echo $background_color2; ?>;">
+	<div class="container">
+		<div class="head_box d-flex justify-content-between align-items-start ">
+			<?php if ($section_title) : ?>
+				<h2 class="ews_title mb-5">
+					<?php echo esc_html($section_title2); ?>
+				</h2>
+			<?php endif; ?>
+			<a href="<?php echo site_url(); ?>/product" class="btn btn-primary bg-white text-black see_more mt-2">Daugiau</a>
+		</div>
+		<div class="swiper-container my-swiper sl-<?php echo $layout . '-' . $index; ?>">
+			<div class="swiper-wrapper">
+				<?php
+				if ($product_slider !=  'new') {
+					// Custom WooCommerce Product Loop
+					$args = array(
+						'post_type'      => 'product',
+						'posts_per_page' => 15, // Adjust as needed
+						'meta_key'       => 'total_sales', // Sort by total sales (popular products)
+						'orderby'        => 'meta_value_num', // Order by numeric value
+						'order'          => 'DESC',
+						'post_status'    => 'publish',
+					);
+				} else {
+					// Custom WooCommerce Product Loop
+					$args = array(
+						'post_type'      => 'product',
+						'posts_per_page' => 15, // Adjust as needed
+						// 'meta_key'       => 'total_sales', // Sort by total sales (popular products)
+						'orderby'        => 'meta_value_num', // Order by numeric value
+						'order'          => 'DESC',
+						'post_status'    => 'publish',
+					);
+				}
+
+				$loop = new WP_Query($args);
+
+				if ($loop->have_posts()) :
+
+					while ($loop->have_posts()) : $loop->the_post();
+						global $product;
+				?>
+						<div class="swiper-slide ">
+							<div class="single-product">
+								<!-- Product Image -->
+								<div class="product-image">
+									<?php // Display product thumbnail
+									global $product;
+									$percent = ews_get_discount_percent($product);
+									?>
+									<div class="badge_box ">
+										<span class="cs_badge top_badge bg_primary text-14">TOP</span>
+										<?php if ($percent): ?>
+											<span class="cs_badge discount_badge text-14">-<?php echo esc_html($percent); ?>%</span>
+										<?php endif; ?>
+									</div>
+									<a href="<?php the_permalink(); ?>">
+										<?php echo woocommerce_get_product_thumbnail('medium'); ?>
+									</a>
+								</div>
+
+								<!-- Product Brand (From Taxonomy) -->
+								<div class="product-brand">
+									<?php
+									$brand_terms = get_the_terms($product->get_id(), 'product_brand'); // Change 'product_brand' to your brand taxonomy slug
+									if ($brand_terms && !is_wp_error($brand_terms)) {
+										echo '<span class="brand-name">' . esc_html($brand_terms[0]->name) . '</span>';
+									}
+									?>
+								</div>
+
+								<!-- Product Title -->
+								<h3 class="product-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+
+								<!-- Product Price -->
+								<div class="product-price">
+									<?php if ($product->is_on_sale()) : ?>
+										<span class="sale-price"><?php echo wc_price($product->get_sale_price()); ?></span>
+										<span class="regular-price"><del><?php echo wc_price($product->get_regular_price()); ?></del></span>
+									<?php else : ?>
+										<span class="sale-price"><?php echo wc_price($product->get_price()); ?></span>
+									<?php endif; ?>
+								</div>
+
+								<!-- Add to Cart Button -->
+								<div class="add-to-cart">
+									<?php woocommerce_template_loop_add_to_cart(); ?>
+								</div>
+
+								<!-- Compare Checkbox -->
+								<?php $image_url = get_the_post_thumbnail_url(get_the_ID(), 'medium'); ?>
+								<label class="compare-checkbox custom-checkbox">
+									<input type="checkbox" class="compare-product"
+										data-product-id="<?php echo esc_attr($product->get_id()); ?>"
+										data-title="<?php the_title_attribute(); ?>"
+										data-imageurl="<?php echo esc_url($image_url); ?>">
+									<span class="checkmark"></span>
+									Palyginti
+								</label>
+							</div>
+						</div>
+					<?php
+					endwhile;
+
+				else :
+					?>
+					<div class="col">
+						<h2 class="ews_title">
+							No products found.
+						</h2>
+					</div>
+				<?php
+				endif;
+
+				wp_reset_postdata();
+				?>
+			</div><!-- swiper-wrapper -->
+			<!-- Navigation -->
+			<div class="container d-flex justify-content-between align-items-center mt-5 pt-4">
+				<div class="swiper-progress-bar">
+					<span class="swiper-progress"></span>
+				</div>
+				<div class="arrow">
+					<div class="swiper-button-prev">
+						<div class="icon-box">
+							<div class="icon-holder">
+								<img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-left-black.png" alt="icon" />
+							</div>
+						</div>
+					</div>
+					<div class="swiper-button-next">
+						<div class="icon-box">
+							<div class="icon-holder">
+								<img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-right-black.png" alt="icon" />
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div><!-- end container Navigation -->
+
+		</div><!-- end swiper-container -->
+	</div>
+
+</section>
+
+<?php
+get_footer('shop');
+
+/* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */

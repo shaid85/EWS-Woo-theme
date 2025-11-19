@@ -1,0 +1,840 @@
+<?php
+/*
+Template Name: Home Page Templete
+*/
+
+get_header(); ?>
+
+<div id="content_area" class="site-content">
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main">
+            <section class="hero">
+                <div class="hero-slider-container">
+                    <div class="swiper hero-slider">
+
+                        <div class="swiper-wrapper">
+                            <!-- Slide 1 -->
+                            <div class="swiper-slide" style="background-image: url('<?php echo site_url(); ?>/wp-content/uploads/2025/03/slide-1-min.jpg');">
+                                <div class="overshadow"></div>
+                                <div class="col-md-6 content_wrap">
+                                    <h1>Teniso rakečių testavimas, išbandyk pirmas!</h1>
+                                    <p>Elementum elementum eget praesent venenatis pellentesque</p>
+                                </div>
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class="swiper-slide" style="background-image: url('<?php echo site_url(); ?>/wp-content/uploads/2025/03/slide-1-min.jpg');">
+                                <div class="overshadow"></div>
+                                <div class="col-md-6 content_wrap">
+                                    <h1>Teniso rakečių testavimas, išbandyk pirmas!</h1>
+                                    <p>Elementum elementum eget praesent venenatis pellentesque</p>
+                                </div>
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class="swiper-slide" style="background-image: url('<?php echo site_url(); ?>/wp-content/uploads/2025/03/slide-1-min.jpg');">
+                                <div class="overshadow"></div>
+                                <div class="col-md-6 content_wrap">
+                                    <h1>Teniso rakečių testavimas, išbandyk pirmas!</h1>
+                                    <p>Elementum elementum eget praesent venenatis pellentesque</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Navigation -->
+                        <div class="container">
+                            <div class="swiper-button-next">
+                                <div class="icon-box">
+                                    <div class="icon-holder">
+                                        <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-right2.png" alt="logo-image" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-button-prev">
+                                <div class="icon-box">
+                                    <div class="icon-holder">
+                                        <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-left2.png" alt="logo-image" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pagination Dots -->
+                        <div class="swiper-pagination"></div>
+
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="iconbox_section bg-body-tertiary">
+                <div class="container">
+                    <div class="icon_list">
+                        <div class="info">
+                            <div class="icon">
+                                <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/list-Grazinimas.png" alt="icon-image" />
+                            </div>
+                            <div class="text">
+                                <h3>Nemokamas grąžinimas</h3>
+                                <p>Visoje Lietuvoje</p>
+                            </div>
+                        </div> <!--  end info -->
+                        <div class="info">
+                            <div class="icon">
+                                <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/llist-Saugus apmokejimas.png" alt="icon-image" />
+                            </div>
+                            <div class="text">
+                                <h3>Saugus atsiskaitymas</h3>
+                                <p>SLL mokėjimų apsauga</p>
+                            </div>
+                        </div> <!--  end info -->
+                        <div class="info">
+                            <div class="icon">
+                                <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/list-Delivery.png" alt="icon-image" />
+                            </div>
+                            <div class="text">
+                                <h3>Nemokamas pristatymas</h3>
+                                <p>Perkant nuo 99 EUR</p>
+                            </div>
+                        </div> <!--  end info -->
+                        <div class="info">
+                            <div class="icon">
+                                <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/list-Stygavimas.png" alt="icon-image" />
+                            </div>
+                            <div class="text">
+                                <h3>Individualus stygavimas</h3>
+                                <p>Maksimaliam našumui</p>
+                            </div>
+                        </div> <!--  end info -->
+                    </div>
+                </div>
+            </section>
+
+            <section class="top-categories">
+                <div class="container">
+                    <h2 class="ews-title">Top kategorijos</h2>
+                    <div class="row gx-3">
+                        <div class="col-md-3">
+                            <div class="cat_box">
+                                <div class="f_image" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/assets/images/cat-1.jpg');">
+                                    <a href="#">
+                                        <div class="icon-box">
+                                            <div class="icon-holder">
+                                                <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-up2.png" alt="logo-image" />
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <h2 class="text">
+                                    Padelio raketės
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="cat_box">
+                                <div class="f_image" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/assets/images/cat-2.jpg');">
+                                    <a href="#">
+                                        <div class="icon-box">
+                                            <div class="icon-holder">
+                                                <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-up2.png" alt="logo-image" />
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <h2 class="text">
+                                    Padelio aksesuarai
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="cat_box">
+                                <div class="f_image" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/assets/images/cat-3.jpg');">
+                                    <a href="#">
+                                        <div class="icon-box">
+                                            <div class="icon-holder">
+                                                <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-up2.png" alt="logo-image" />
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <h2 class="text">
+                                    Kamuoliukai
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="cat_box">
+                                <div class="f_image" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/assets/images/cat-4.jpg');">
+                                    <a href="#">
+                                        <div class="icon-box">
+                                            <div class="icon-holder">
+                                                <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-up2.png" alt="logo-image" />
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <h2 class="text">
+                                    Apsaugos
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="popular_product">
+                <div class="container">
+                    <div class="head_box d-flex justify-content-between align-items-start ">
+                        <h2 class="ews-title">Populiariausi produktai</h2>
+                        <a href="#" class="btn btn-primary bg-white text-black see_more mt-2">Daugiau</a>
+                    </div>
+                    <div class="swiper-container my-swiper">
+                        <div class="swiper-wrapper">
+                            <?php
+                            // Custom WooCommerce Product Loop
+                            $args = array(
+                                'post_type'      => 'product',
+                                'posts_per_page' => 10, // Adjust as needed
+                                'meta_key'       => 'total_sales', // Sort by total sales (popular products)
+                                'orderby'        => 'meta_value_num', // Order by numeric value
+                                'order'          => 'DESC',
+                                'post_status'    => 'publish',
+                            );
+
+                            $loop = new WP_Query($args);
+
+                            if ($loop->have_posts()) :
+
+                                while ($loop->have_posts()) : $loop->the_post();
+                                    global $product;
+                            ?>
+                                    <div class="swiper-slide ">
+                                        <div class="single-product">
+                                            <!-- Product Image -->
+                                            <div class="product-image">
+                                                <a href="<?php the_permalink(); ?>">
+                                                    <?php echo woocommerce_get_product_thumbnail('medium'); ?>
+                                                </a>
+                                            </div>
+
+                                            <!-- Product Brand (From Taxonomy) -->
+                                            <div class="product-brand">
+                                                <?php
+                                                $brand_terms = get_the_terms($product->get_id(), 'product_brand'); // Change 'product_brand' to your brand taxonomy slug
+                                                if ($brand_terms && !is_wp_error($brand_terms)) {
+                                                    echo '<span class="brand-name">' . esc_html($brand_terms[0]->name) . '</span>';
+                                                }
+                                                ?>
+                                            </div>
+
+                                            <!-- Product Title -->
+                                            <h3 class="product-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+
+                                            <!-- Product Price -->
+                                            <div class="product-price">
+                                                <?php if ($product->is_on_sale()) : ?>
+                                                    <span class="sale-price"><?php echo wc_price($product->get_sale_price()); ?></span>
+                                                    <span class="regular-price"><del><?php echo wc_price($product->get_regular_price()); ?></del></span>
+                                                <?php else : ?>
+                                                    <span class="regular-price"><?php echo wc_price($product->get_price()); ?></span>
+                                                <?php endif; ?>
+                                            </div>
+
+                                            <!-- Add to Cart Button -->
+                                            <div class="add-to-cart">
+                                                <?php woocommerce_template_loop_add_to_cart(); ?>
+                                            </div>
+
+                                            <!-- Compare Checkbox -->
+                                            <label class="compare-checkbox custom-checkbox">
+                                                <input type="checkbox" class="compare-product" data-product-id="<?php echo esc_attr($product->get_id()); ?>">
+                                                <span class="checkmark"></span>
+                                                Palyginti
+                                            </label>
+                                        </div>
+                                    </div>
+                                <?php
+                                endwhile;
+
+                            else :
+                                ?>
+                                <div class="col">
+                                    <h2 class="ews_title">
+                                        No products found.
+                                    </h2>
+                                </div>
+                            <?php
+                            endif;
+
+                            wp_reset_postdata();
+                            ?>
+                        </div><!-- swiper-wrapper -->
+                        <!-- Navigation -->
+                        <div class="container d-flex justify-content-between align-items-center mt-5 pt-4">
+                            <div class="swiper-progress-bar">
+                                <span class="swiper-progress"></span>
+                            </div>
+                            <div class="arrow">
+                                <div class="swiper-button-prev">
+                                    <div class="icon-box">
+                                        <div class="icon-holder">
+                                            <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-left-black.png" alt="logo-image" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-next">
+                                    <div class="icon-box">
+                                        <div class="icon-holder">
+                                            <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-right-black.png" alt="logo-image" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div><!-- end container Navigation -->
+
+                    </div><!-- end swiper-container -->
+                </div>
+
+            </section>
+
+
+            <section class="category_grid">
+                <div class="container">
+                    <div class="head_box d-flex justify-content-between align-items-start ">
+                        <h2 class="ews-title">Sporto šakos</h2>
+
+                    </div>
+                    <div class="swiper-container my-swiper2">
+                        <div class="swiper-wrapper">
+
+                            <div class="swiper-slide ">
+                                <div class="cat_box overly">
+                                    <div class="f_image" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/assets/images/cat-2.jpg');">
+                                        <div class="cattitle_wrap">
+                                            <h2 class="text">
+                                                Padelio raketės
+                                            </h2>
+                                            <a href="#">
+                                                <div class="icon-box">
+                                                    <div class="icon-holder">
+                                                        <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-up2.png" alt="logo-image" />
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div><!-- swiper-slide -->
+
+                            <div class="swiper-slide ">
+                                <div class="cat_box overly">
+                                    <div class="f_image" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/assets/images/cat-5.jpg');">
+                                        <div class="cattitle_wrap">
+                                            <h2 class="text">
+                                                Padelio raketės
+                                            </h2>
+                                            <a href="#">
+                                                <div class="icon-box">
+                                                    <div class="icon-holder">
+                                                        <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-up2.png" alt="logo-image" />
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div><!-- swiper-slide -->
+
+                            <div class="swiper-slide full-height">
+                                <div class="cat_box overly">
+                                    <div class="f_image" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/assets/images/cat-3.jpg');">
+                                        <div class="cattitle_wrap">
+                                            <h2 class="text">
+                                                Padelio raketės
+                                            </h2>
+                                            <a href="#">
+                                                <div class="icon-box">
+                                                    <div class="icon-holder">
+                                                        <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-up2.png" alt="logo-image" />
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div><!-- swiper-slide -->
+
+                            <div class="swiper-slide ">
+                                <div class="cat_box overly">
+                                    <div class="f_image" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/assets/images/cat-1.jpg');">
+                                        <div class="cattitle_wrap">
+                                            <h2 class="text">
+                                                Padelio raketės
+                                            </h2>
+                                            <a href="#">
+                                                <div class="icon-box">
+                                                    <div class="icon-holder">
+                                                        <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-up2.png" alt="logo-image" />
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div><!-- swiper-slide -->
+
+                            <div class="swiper-slide ">
+                                <div class="cat_box overly">
+                                    <div class="f_image" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/assets/images/cat-4.jpg');">
+                                        <div class="cattitle_wrap">
+                                            <h2 class="text">
+                                                Padelio raketės
+                                            </h2>
+                                            <a href="#">
+                                                <div class="icon-box">
+                                                    <div class="icon-holder">
+                                                        <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-up2.png" alt="logo-image" />
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div><!-- swiper-slide -->
+
+                            <div class="swiper-slide ">
+                                <div class="cat_box overly">
+                                    <div class="f_image" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/assets/images/cat-5.jpg');">
+                                        <div class="cattitle_wrap">
+                                            <h2 class="text">
+                                                Padelio raketės
+                                            </h2>
+                                            <a href="#">
+                                                <div class="icon-box">
+                                                    <div class="icon-holder">
+                                                        <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-up2.png" alt="logo-image" />
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div><!-- swiper-slide -->
+
+                            <div class="swiper-slide ">
+                                <div class="cat_box overly">
+                                    <div class="f_image" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/assets/images/cat-1.jpg');">
+                                        <div class="cattitle_wrap">
+                                            <h2 class="text">
+                                                Padelio raketės
+                                            </h2>
+                                            <a href="#">
+                                                <div class="icon-box">
+                                                    <div class="icon-holder">
+                                                        <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-up2.png" alt="logo-image" />
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div><!-- swiper-slide -->
+
+
+                        </div><!-- swiper-wrapper -->
+                        <!-- Navigation -->
+                        <div class="container d-flex justify-content-between align-items-center mt-5 pt-4">
+                            <div class="swiper-progress-bar">
+                                <span class="swiper-progress"></span>
+                            </div>
+                            <div class="arrow">
+                                <div class="swiper-button-prev">
+                                    <div class="icon-box">
+                                        <div class="icon-holder">
+                                            <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-left-black.png" alt="logo-image" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-next">
+                                    <div class="icon-box">
+                                        <div class="icon-holder">
+                                            <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-right-black.png" alt="logo-image" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div><!-- end container Navigation -->
+
+                    </div><!-- end swiper-container -->
+                </div><!-- end container -->
+
+            </section>
+
+
+
+            <!-- New Products -->
+            <section class="latest_product popular_product">
+                <div class="container">
+                    <div class="head_box d-flex justify-content-between align-items-start ">
+                        <h2 class="ews-title">Naujausi produktai</h2>
+                        <a href="#" class="btn btn-primary bg-white text-black see_more mt-2">Daugiau</a>
+                    </div>
+                    <div class="swiper-container my-swiper3">
+                        <div class="swiper-wrapper">
+                            <?php
+                            // Custom WooCommerce Product Loop
+                            $args = array(
+                                'post_type'      => 'product',
+                                'posts_per_page' => 10, // Adjust as needed
+                                'orderby'        => 'meta_value_num', // Order by numeric value
+                                'order'          => 'DESC',
+                                'post_status'    => 'publish',
+                            );
+
+                            $loop = new WP_Query($args);
+
+                            if ($loop->have_posts()) :
+
+                                while ($loop->have_posts()) : $loop->the_post();
+                                    global $product;
+                            ?>
+                                    <div class="swiper-slide ">
+                                        <div class="single-product">
+                                            <!-- Product Image -->
+                                            <div class="product-image">
+                                                <a href="<?php the_permalink(); ?>">
+                                                    <?php echo woocommerce_get_product_thumbnail('medium'); ?>
+                                                </a>
+                                            </div>
+
+                                            <!-- Product Brand (From Taxonomy) -->
+                                            <div class="product-brand">
+                                                <?php
+                                                $brand_terms = get_the_terms($product->get_id(), 'product_brand'); // Change 'product_brand' to your brand taxonomy slug
+                                                if ($brand_terms && !is_wp_error($brand_terms)) {
+                                                    echo '<span class="brand-name">' . esc_html($brand_terms[0]->name) . '</span>';
+                                                }
+                                                ?>
+                                            </div>
+
+                                            <!-- Product Title -->
+                                            <h3 class="product-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+
+                                            <!-- Product Price -->
+                                            <div class="product-price">
+                                                <?php if ($product->is_on_sale()) : ?>
+                                                    <span class="sale-price"><?php echo wc_price($product->get_sale_price()); ?></span>
+                                                    <span class="regular-price"><del><?php echo wc_price($product->get_regular_price()); ?></del></span>
+                                                <?php else : ?>
+                                                    <span class="regular-price"><?php echo wc_price($product->get_price()); ?></span>
+                                                <?php endif; ?>
+                                            </div>
+
+                                            <!-- Add to Cart Button -->
+                                            <div class="add-to-cart">
+                                                <?php woocommerce_template_loop_add_to_cart(); ?>
+                                            </div>
+
+                                            <!-- Compare Checkbox -->
+                                            <label class="compare-checkbox custom-checkbox">
+                                                <input type="checkbox" class="compare-product" data-product-id="<?php echo esc_attr($product->get_id()); ?>">
+                                                <span class="checkmark"></span>
+                                                Palyginti
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                <?php
+                                endwhile;
+
+                            else :
+                                ?>
+                                <div class="col">
+                                    <h2 class="ews_title">
+                                        No products found.
+                                    </h2>
+                                </div>
+                            <?php
+                            endif;
+
+                            wp_reset_postdata();
+                            ?>
+                        </div><!-- swiper-wrapper -->
+                        <!-- Navigation -->
+                        <div class="container d-flex justify-content-between align-items-center mt-5 pt-4">
+                            <div class="swiper-progress-bar">
+                                <span class="swiper-progress"></span>
+                            </div>
+                            <div class="arrow">
+                                <div class="swiper-button-prev">
+                                    <div class="icon-box">
+                                        <div class="icon-holder">
+                                            <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-left-black.png" alt="logo-image" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-next">
+                                    <div class="icon-box">
+                                        <div class="icon-holder">
+                                            <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-right-black.png" alt="logo-image" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div><!-- end container Navigation -->
+
+                    </div><!-- end swiper-container -->
+                </div><!-- end container -->
+            </section>
+
+            <!-- Winter Sale -->
+            <section class="winter_sale ">
+                <div class="container">
+                    <div class="cat_box overly promo_box">
+                        <div class="f_image" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/assets/images/promobox-min.jpg');">
+                            <div class="cattitle_wrap">
+                                <h2 class="text">
+                                    Finalinis žiemos išpardavimas
+                                </h2>
+                                <p class="text-white">Nuolaidos iki 70%</p>
+                                <a class="arrow_btn btn mt-4" href="#">Apsipirk dabar <span></span></a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div><!-- end container -->
+            </section>
+
+
+            <!-- Brands -->
+            <section class="brands winter_sale">
+                <div class="container">
+                    <h2 class="ews-title">Prekių ženklai</h2>
+                    <div class="swiper-container brand-slider">
+                        <div class="swiper-wrapper">
+
+                            <div class="swiper-slide ">
+                                <div class="brandimg">
+                                    <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/tennisland/logo-1.png" alt="brand-image" />
+                                </div>
+                            </div><!-- swiper-slide -->
+                            <div class="swiper-slide ">
+                                <div class="brandimg">
+                                    <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/tennisland/logo-VARLION.png" alt="brand-image" />
+                                </div>
+                            </div><!-- swiper-slide -->
+                            <div class="swiper-slide ">
+                                <div class="brandimg">
+                                    <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/tennisland/logo-3.png" alt="brand-image" />
+                                </div>
+                            </div><!-- swiper-slide -->
+                            <div class="swiper-slide ">
+                                <div class="brandimg">
+                                    <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/tennisland/logo-asics.png" alt="brand-image" />
+                                </div>
+                            </div><!-- swiper-slide -->
+                            <div class="swiper-slide ">
+                                <div class="brandimg">
+                                    <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/tennisland/bidi-badu-1.png" alt="brand-image" />
+                                </div>
+                            </div><!-- swiper-slide -->
+                            <div class="swiper-slide ">
+                                <div class="brandimg">
+                                    <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/tennisland/asics-61.png" alt="brand-image" />
+                                </div>
+                            </div><!-- swiper-slide -->
+                            <div class="swiper-slide ">
+                                <div class="brandimg">
+                                    <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/tennisland/bidi-badu.png" alt="brand-image" />
+                                </div>
+                            </div><!-- swiper-slide -->
+                            <div class="swiper-slide ">
+                                <div class="brandimg">
+                                    <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/tennisland/Logo_of_Bjo¦êrn_Borg_AB.svg.png" alt="brand-image" />
+                                </div>
+                            </div><!-- swiper-slide -->
+                            <div class="swiper-slide ">
+                                <div class="brandimg">
+                                    <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/tennisland/logo-4.png" alt="brand-image" />
+                                </div>
+                            </div><!-- swiper-slide -->
+                            <div class="swiper-slide ">
+                                <div class="brandimg">
+                                    <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/tennisland/nike-tennis1.png" alt="brand-image" />
+                                </div>
+                            </div><!-- swiper-slide -->
+                            <div class="swiper-slide ">
+                                <div class="brandimg">
+                                    <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/tennisland/nike-tennis2.png" alt="brand-image" />
+                                </div>
+                            </div><!-- swiper-slide -->
+                            <div class="swiper-slide ">
+                                <div class="brandimg">
+                                    <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/tennisland/Nox_logo_1200x1200.png" alt="brand-image" />
+                                </div>
+                            </div><!-- swiper-slide -->
+
+
+
+
+
+                        </div><!-- swiper-wrapper -->
+                        <!-- Navigation -->
+                        <div class="container d-flex justify-content-between align-items-center mt-5 pt-4">
+                            <div class="swiper-progress-bar">
+                                <span class="swiper-progress"></span>
+                            </div>
+                            <div class="arrow">
+                                <div class="swiper-button-prev">
+                                    <div class="icon-box">
+                                        <div class="icon-holder">
+                                            <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-left-black.png" alt="logo-image" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-next">
+                                    <div class="icon-box">
+                                        <div class="icon-holder">
+                                            <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/arrow-right-black.png" alt="logo-image" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div><!-- end container Navigation -->
+
+                    </div><!-- end swiper-container -->
+                </div><!-- end container -->
+            </section>
+
+            <section class="help_box bg-white">
+                <div class="container-fluid gx-0">
+                    <div class="row align-items-center gx-0">
+                        <div class="col-md-6">
+                            <div class="text p-md-5 p-3 mx-xxl-5">
+                                <h2 class="mb-2">Reikia pagalbos<br /> išsirenkant raketę?</h2>
+                                <p class="mb-3">Raskite Jums tinkamiausią modelį vos per 3 minutes.</p>
+                                <ul class="list_style">
+                                    <li>Pagal žaidimo lygį bei stilių rekomenduojamas raketės parinkimas;</li>
+                                    <li>Raketė individualiai pritaikome pagal jos svorį ir balansą;</li>
+                                    <li>Užtikrinama, kad raketės galvos dydis ir lankstumas atitiktų Jus.</li>
+                                </ul>
+                                <a class="arrow_btn btn black_btn mt-5" href="#">Apsipirk dabar <span></span></a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/col-2.jpg" alt="logo-image" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="news_box">
+                <div class="container">
+                    <h2 class="ews-title">Naujienos</h2>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card_box">
+                                <div class="f_image" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/assets/images/blog-1.jpg');">
+                                </div>
+                                <h2 class="text">Grand Slam - pagrindiniai teniso turnyrai</h2>
+                                <p>
+                                    Enim dolor lectus donec odio. Ut enim commodo vulputate scelerisque augue mi facilisi venenatis. Morbi risus dignissim.
+                                </p>
+                                <a href="#">Skaityti</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card_box">
+                                <div class="f_image" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/assets/images/blog-2.jpg');">
+                                </div>
+                                <h2 class="text">Grand Slam - pagrindiniai teniso turnyrai</h2>
+                                <p>
+                                    Enim dolor lectus donec odio. Ut enim commodo vulputate scelerisque augue mi facilisi venenatis. Morbi risus dignissim.
+                                </p>
+                                <a href="#">Skaityti</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card_box">
+                                <div class="f_image" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/assets/images/blog-3.jpg');">
+                                </div>
+                                <h2 class="text">Grand Slam - pagrindiniai teniso turnyrai</h2>
+                                <p>
+                                    Enim dolor lectus donec odio. Ut enim commodo vulputate scelerisque augue mi facilisi venenatis. Morbi risus dignissim.
+                                </p>
+                                <a href="#">Skaityti</a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </section>
+
+
+
+            <section class="iconbox_section style-2">
+                <div class="container">
+                    <div class="icon_list s2">
+                        <div class="info">
+                            <div class="icon">
+                                <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/list-Grazinimas.png" alt="icon-image" />
+                            </div>
+                            <div class="text">
+                                <h3>Nemokamas grąžinimas</h3>
+                                <p>Visoje Lietuvoje</p>
+                            </div>
+                        </div> <!--  end info -->
+                        <div class="info">
+                            <div class="icon">
+                                <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/llist-Saugus apmokejimas.png" alt="icon-image" />
+                            </div>
+                            <div class="text">
+                                <h3>Saugus atsiskaitymas</h3>
+                                <p>SLL mokėjimų apsauga</p>
+                            </div>
+                        </div> <!--  end info -->
+                        <div class="info">
+                            <div class="icon">
+                                <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/list-Delivery.png" alt="icon-image" />
+                            </div>
+                            <div class="text">
+                                <h3>Nemokamas pristatymas</h3>
+                                <p>Perkant nuo 99 EUR</p>
+                            </div>
+                        </div> <!--  end info -->
+                        <div class="info">
+                            <div class="icon">
+                                <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/list-Stygavimas.png" alt="icon-image" />
+                            </div>
+                            <div class="text">
+                                <h3>Individualus stygavimas</h3>
+                                <p>Maksimaliam našumui</p>
+                            </div>
+                        </div> <!--  end info -->
+                    </div>
+                </div>
+            </section>
+
+
+        </main>
+    </div>
+</div>
+<?php get_footer(); ?>

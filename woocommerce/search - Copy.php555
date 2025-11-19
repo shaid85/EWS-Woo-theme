@@ -1,0 +1,320 @@
+<?php
+
+/**
+ * The Template for displaying product archives, including the main shop page which is a post type archive
+ *
+ * This template can be overridden by copying it to yourtheme/woocommerce/archive-product.php.
+ *
+ * HOWEVER, on occasion WooCommerce will need to update template files and you
+ * (the theme developer) will need to copy the new files to your theme to
+ * maintain compatibility. We try to do this as little as possible, but it does
+ * happen. When this occurs the version of the template file will be bumped and
+ * the readme will list any important changes.
+ *
+ * @see https://woocommerce.com/document/template-structure/
+ * @package WooCommerce\Templates
+ * @version 8.6.0
+ */
+
+defined('ABSPATH') || exit;
+
+get_header('shop');
+?>
+
+<div class="container">
+    <div class="cat_header text-center p-60">
+        <?php
+        /**
+         * Hook: woocommerce_before_main_content.
+         *
+         * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
+         * @hooked woocommerce_breadcrumb - 20
+         * @hooked WC_Structured_Data::generate_website_data() - 30
+         */
+        do_action('woocommerce_before_main_content'); // show archive breadcrumbs 
+
+        /**
+         * Hook: woocommerce_shop_loop_header.
+         *
+         * @since 8.6.0
+         *
+         * @hooked woocommerce_product_taxonomy_archive_header - 10
+         */
+        do_action('woocommerce_shop_loop_header'); // show archive title
+        ?>
+    </div>
+
+</div>
+
+
+<?php
+if (woocommerce_product_loop()) {
+
+    /**
+     * Hook: woocommerce_before_shop_loop.
+     *
+     * @hooked woocommerce_output_all_notices - 10
+     * @hooked woocommerce_result_count - 20
+     * @hooked woocommerce_catalog_ordering - 30
+     */
+    // do_action('woocommerce_before_shop_loop');
+?>
+    <?php if (is_search() && is_post_type_archive('product')): ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div id="product-filter" class="container mb-4">
+                        <form id="ajax-filter-form">
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <div class="filter_box">
+                                        <h2 class="nr-head open">Pasirinkti filtrai</h2>
+                                        <div class="box_content">
+                                            <div id="active-filters" class="mb-3"></div>
+                                            <a id="clear-filters" class="clear_all"><img src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/atstatyti.png" alt=""> </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- Price Range -->
+                                <div class="col-12 mb-3">
+                                    <!-- Accordion -->
+                                    <div class="filter_box">
+                                        <div class="accordion-group">
+                                            <h2 class="fil-head "><?php _e('Kaina', 'ewsdev'); ?></h2>
+                                            <div class="fil-body ">
+                                                <div class="price-inputs my-3 d-flex">
+                                                    <input type="number" id="min_price" name="min_price" class="form-control d-inline w-50 " value="0">
+                                                    <span class="mx-2">–</span>
+                                                    <input type="number" id="max_price" name="max_price" class="form-control d-inline w-50 " value="500">
+                                                </div>
+                                                <div id="price-range-slider"></div>
+
+                                            </div>
+                                        </div><!-- End Accordion -->
+                                    </div>
+                                </div>
+
+
+                                <!-- <div class="col-md-12 mb-3">
+                                <label for="price_range" class="form-label">Price Range</label>
+                                <input type="range" class="form-range" min="0" max="1000" step="1" id="price_range" name="price_range" value="0;500">
+                                <div>Up to $<span id="priceRangeVal">1000</span></div>
+                            </div> -->
+
+                                <!-- Brands -->
+                                <div class="col-md-12 mb-3">
+                                    <!-- Accordion -->
+                                    <div class="filter_box">
+                                        <div class="accordion-group">
+                                            <h2 class="fil-head "><?php _e('Gamintojas', 'ewsdev'); ?></h2>
+                                            <div class="fil-body ">
+                                                <?php
+                                                $brands = get_terms(['taxonomy' => 'product_brand', 'hide_empty' => false]);
+                                                foreach ($brands as $brand) {
+                                                    echo '<div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="brands[]" value="' . esc_attr($brand->slug) . '" id="brand_' . $brand->term_id . '">
+                  <label class="form-check-label" for="brand_' . $brand->term_id . '">' . esc_html($brand->name) . ' (' . $brand->count . ')</label>
+                </div>';
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
+                                    </div><!-- End filter_box -->
+                                </div>
+
+                                <!-- Collections -->
+                                <div class="col-md-12 mb-3">
+                                    <!-- Accordion -->
+                                    <div class="filter_box">
+                                        <div class="accordion-group">
+                                            <h2 class="fil-head "><?php _e('Kolekcija', 'ewsdev'); ?></h2>
+                                            <div class="fil-body ">
+                                                <select class="form-select" name="collection">
+                                                    <option value=""><?php _e('Visos', 'ewsdev'); ?></option>
+                                                    <?php foreach (wc_get_attribute_taxonomies() as $tax):
+                                                        if ($tax->attribute_name == 'collection'):
+                                                            $terms = get_terms(['taxonomy' => 'pa_collection', 'hide_empty' => true]);
+                                                            foreach ($terms as $term): ?>
+                                                                <option value="<?= $term->slug; ?>"><?= $term->name; ?></option>
+                                                    <?php endforeach;
+                                                        endif;
+                                                    endforeach;
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div><!-- End Accordion -->
+                                    </div>
+                                </div>
+
+                                <!-- Size -->
+                                <div class="col-md-12 mb-3">
+                                    <!-- Accordion -->
+                                    <div class="filter_box">
+                                        <div class="accordion-group">
+                                            <h2 class="fil-head "><?php _e('Dydis', 'ewsdev'); ?></h2>
+                                            <div class="fil-body ">
+
+                                                <?php
+                                                $sizes = get_terms(['taxonomy' => 'pa_dydi', 'hide_empty' => true]);
+                                                foreach ($sizes as $size): ?>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="sizes[]" value="<?= $size->slug; ?>" id="size-<?= $size->term_id; ?>">
+                                                        <label class="form-check-label" for="size-<?= $size->term_id; ?>"><?= $size->name; ?></label>
+                                                    </div>
+                                                <?php endforeach; ?>
+                                            </div>
+                                        </div><!-- End Accordion -->
+                                    </div>
+                                </div>
+
+                                <!-- Weight -->
+                                <div class="col-md-12 mb-3">
+                                    <!-- Accordion -->
+                                    <div class="filter_box">
+                                        <div class="accordion-group">
+                                            <h2 class="fil-head "><?php _e('Lanko dydis', 'ewsdev'); ?></h2>
+                                            <div class="fil-body ">
+                                                <?php
+                                                $weights = get_terms(['taxonomy' => 'pa_weight', 'hide_empty' => true]);
+                                                foreach ($weights as $weight): ?>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="weights[]" value="<?= $weight->slug; ?>" id="weight-<?= $weight->term_id; ?>">
+                                                        <label class="form-check-label" for="weight-<?= $weight->term_id; ?>"><?= $weight->name; ?></label>
+                                                    </div>
+                                                <?php endforeach; ?>
+                                            </div>
+                                        </div><!-- End Accordion -->
+                                    </div>
+                                </div>
+
+                                <!-- Sort By -->
+                                <div class="col-md-12 mb-3">
+
+                                    <select class="form-select" name="sort_by">
+                                        <option value="date_desc"><?php _e('Naujausi', 'ewsdev'); ?></option>
+                                        <option value="popularity"><?php _e('Populiariausi', 'ewsdev'); ?></option>
+                                    </select>
+                                </div>
+
+
+                            </div>
+                        </form>
+                    </div><!-- End product-filter -->
+
+
+                </div><!-- End column -->
+
+                <div class="col-md-9">
+                    <!-- Result Container -->
+                    <div id="results-count" class="mt-3"></div>
+                    <div id="product-results" class="row g-4">
+                        <?php while (have_posts()): the_post(); ?>
+                            <div class="col-md-4">
+                                <div class="single-product">
+                                    <!-- Product Image -->
+                                    <div class="product-image">
+                                        <a href="<?php the_permalink(); ?>">
+                                            <?php echo woocommerce_get_product_thumbnail('medium'); ?>
+                                        </a>
+                                    </div>
+
+                                    <!-- Product Brand (From Taxonomy) -->
+                                    <div class="product-brand">
+                                        <?php
+                                        $brand_terms = get_the_terms($product->get_id(), 'product_brand'); // Change 'product_brand' to your brand taxonomy slug
+                                        if ($brand_terms && !is_wp_error($brand_terms)) {
+                                            echo '<span class="brand-name">' . esc_html($brand_terms[0]->name) . '</span>';
+                                        }
+                                        ?>
+                                    </div>
+
+                                    <!-- Product Title -->
+                                    <h3 class="product-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+
+                                    <!-- Product Price -->
+                                    <div class="product-price">
+                                        <?php if ($product->is_on_sale()) : ?>
+                                            <span class="sale-price"><?php echo wc_price($product->get_sale_price()); ?></span>
+                                            <span class="regular-price"><del><?php echo wc_price($product->get_regular_price()); ?></del></span>
+                                        <?php else : ?>
+                                            <span class="regular-price"><?php echo wc_price($product->get_price()); ?></span>
+                                        <?php endif; ?>
+                                    </div>
+
+                                    <!-- Add to Cart Button -->
+                                    <div class="add-to-cart">
+                                        <?php woocommerce_template_loop_add_to_cart(); ?>
+                                    </div>
+
+                                    <!-- Compare Checkbox -->
+                                    <label class="compare-checkbox custom-checkbox">
+                                        <input type="checkbox" class="compare-product" data-product-id="<?php echo esc_attr($product->get_id()); ?>">
+                                        <span class="checkmark"></span>
+                                        Palyginti
+                                    </label>
+                                </div>
+                            </div>
+                        <?php endwhile; ?>
+                    </div>
+                    <div id="pagination-wrapper"></div>
+
+                </div>
+
+
+            </div> <!-- End row -->
+        </div> <!-- End container -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.0/nouislider.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.0/nouislider.min.js"></script>
+
+    <?php endif; ?>
+<?php
+    woocommerce_product_loop_start();
+
+    // if (wc_get_loop_prop('total')) {
+    //     while (have_posts()) {
+    //         the_post();
+
+    //         /**
+    //          * Hook: woocommerce_shop_loop.
+    //          */
+    //         do_action('woocommerce_shop_loop');
+
+    //         wc_get_template_part('content', 'product');
+    //     }
+    // }
+
+    woocommerce_product_loop_end();
+
+    /**
+     * Hook: woocommerce_after_shop_loop.
+     *
+     * @hooked woocommerce_pagination - 10
+     */
+    do_action('woocommerce_after_shop_loop');
+} else {
+    /**
+     * Hook: woocommerce_no_products_found.
+     *
+     * @hooked wc_no_products_found - 10
+     */
+    do_action('woocommerce_no_products_found');
+}
+
+/**
+ * Hook: woocommerce_after_main_content.
+ *
+ * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
+ */
+do_action('woocommerce_after_main_content');
+
+/**
+ * Hook: woocommerce_sidebar.
+ *
+ * @hooked woocommerce_get_sidebar - 10
+ */
+// do_action('woocommerce_sidebar');
+
+get_footer('shop');

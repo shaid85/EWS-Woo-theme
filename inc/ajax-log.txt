@@ -1,0 +1,6 @@
+Array
+(
+    [action] => toggle_love
+    [nonce] => 73d6a3f342
+    [id] => 562
+)

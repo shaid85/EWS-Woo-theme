@@ -73,6 +73,17 @@ jQuery(function ($) {
 
         Cookies.set('product_filter_data', JSON.stringify(filterData), { expires: 7 });
 
+        // Send email via AJAX
+        $.post(racketWizard.ajaxUrl, {
+            action: 'send_raketes_vedlys_email',
+            email: email,
+            lytis: lytis,
+            amzius: amzius,
+            lygis: lygis,
+            tikimasi: tikimasi.join(', '),
+            category: filterCat
+        });
+
         $('body').append(`
             <div id='loading-popup' style='position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #FAFBFD; z-index: 9999; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 500;'>
                 <div class='d-flex flex-column align-items-center'>

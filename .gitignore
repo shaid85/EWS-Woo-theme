@@ -2,5 +2,6 @@ node_modules
 dist
 .env
 images
-assets
+assets/fonts
+assets/images
 screenshot.jpg

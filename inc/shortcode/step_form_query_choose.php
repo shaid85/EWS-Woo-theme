@@ -337,11 +337,48 @@ add_shortcode('racket_finder', function () {
 <?php return ob_get_clean();
 });
 
+
+// AJAX handler in PHP - This receives the data and sends the email.
+
 add_action('wp_enqueue_scripts', function () {
     wp_enqueue_script('racket-wizard', get_stylesheet_directory_uri() . '/assets/js/racket-wizard.js', ['jquery'], null, true);
     wp_localize_script('racket-wizard', 'racketWizard', [
+        'ajaxUrl' => admin_url('admin-ajax.php'),
         'baseUrl' => esc_url(site_url('/kategorija/raketes/')),
     ]);
 });
 
-?>
+add_action('wp_ajax_send_raketes_vedlys_email', 'send_raketes_vedlys_email');
+add_action('wp_ajax_nopriv_send_raketes_vedlys_email', 'send_raketes_vedlys_email');
+
+function send_raketes_vedlys_email()
+{
+
+    $email    = sanitize_email($_POST['email']);
+    $lytis    = sanitize_text_field($_POST['lytis']);
+    $amzius   = sanitize_text_field($_POST['amzius']);
+    $lygis    = sanitize_text_field($_POST['lygis']);
+    $tikimasi = sanitize_text_field($_POST['tikimasi']);
+    $category = sanitize_text_field($_POST['category']);
+
+    $to = "info@tennis-land.lt";
+    $subject = "Raketės vedlio forma";
+
+    $message = "
+Nauja Raketės vedlio forma:
+
+Kliento el. paštas: $email
+
+Kategorija: $category
+Lytis: $lytis
+Amžius: $amzius
+Lygis: $lygis
+
+Ko tikimasi iš raketės:
+$tikimasi
+    ";
+
+    wp_mail($to, $subject, $message);
+
+    wp_send_json_success("Email sent");
+}

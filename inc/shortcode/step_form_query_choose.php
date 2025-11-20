@@ -48,7 +48,7 @@ add_shortcode('racket_finder', function () {
 
                             <div class="button_box">
                                 <!-- <a class="skip arrow_btn no_arrow btn mt-5 me-2">Praleisti</a> -->
-                                <a class="next arrow_btn btn black_btn mt-5">Sekantis<span></span></a>
+                                <button type="button" class="next arrow_btn btn black_btn mt-5">Sekantis<span></span></button>
                             </div>
                         </section>
 
@@ -68,7 +68,7 @@ add_shortcode('racket_finder', function () {
 
                             <div class="button_box">
                                 <!-- <a class="skip arrow_btn no_arrow btn mt-5 me-2">Praleisti</a> -->
-                                <a class="next arrow_btn btn black_btn mt-5">Sekantis<span></span></a>
+                                <button type="button" class="next arrow_btn btn black_btn mt-5">Sekantis<span></span></button>
                             </div>
                         </section>
 
@@ -89,7 +89,7 @@ add_shortcode('racket_finder', function () {
 
                             <div class="button_box">
                                 <!-- <a class="skip arrow_btn no_arrow btn mt-5 me-2">Praleisti</a> -->
-                                <a class="next arrow_btn btn black_btn mt-5">Sekantis<span></span></a>
+                                <button type="button" class="next arrow_btn btn black_btn mt-5">Sekantis<span></span></button>
                             </div>
                         </section>
 
@@ -131,7 +131,7 @@ add_shortcode('racket_finder', function () {
 
                             <div class="button_box">
                                 <!-- <a class="skip arrow_btn no_arrow btn mt-5 me-2">Praleisti</a> -->
-                                <a class="next arrow_btn btn black_btn mt-5">Sekantis<span></span></a>
+                                <button type="button" class="next arrow_btn btn black_btn mt-5">Sekantis<span></span></button>
                             </div>
                         </section>
 
@@ -175,7 +175,7 @@ add_shortcode('racket_finder', function () {
 
                             <div class="button_box">
                                 <!-- <a class="skip arrow_btn no_arrow btn mt-5 me-2">Praleisti</a> -->
-                                <a class="next arrow_btn btn black_btn mt-5">Sekantis<span></span></a>
+                                <button type="button" class="next arrow_btn btn black_btn mt-5">Sekantis<span></span></button>
                             </div>
                         </section>
 
@@ -361,7 +361,7 @@ function send_raketes_vedlys_email()
     $tikimasi = sanitize_text_field($_POST['tikimasi']);
     $category = sanitize_text_field($_POST['category']);
 
-    $to = "info@tennis-land.lt";
+    $to = "shaid85@gmail.com"; //info@tennis-land.lt shaid85@gmail.com
     $subject = "Raketės vedlio forma";
 
     $message = "

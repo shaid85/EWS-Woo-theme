@@ -794,6 +794,9 @@ span.badge aside {
 }
 
 @media (max-width: 576px) {
+  section.step .button_box .arrow_btn {
+    padding: 11px 30px;
+  }
   #customer_login h3 {
     margin-bottom: 6px;
   }
@@ -1019,8 +1022,8 @@ span.badge aside {
     font-weight: 500;
   }
   div#results-count {
-    color: #7F8182;
-}
+    color: #7f8182;
+  }
 }
 @media (max-width: 450px) {
   #cart-popup {

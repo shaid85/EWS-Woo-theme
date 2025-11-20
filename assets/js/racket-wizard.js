@@ -31,7 +31,6 @@ jQuery(function ($) {
 
     // Next
     $(document).on('click', '#racket-wizard .next', function (e) {
-        e.preventDefault();
         const $curr = $steps.eq(current);
         if ($curr.find('input[required]:checked').length) show(current + 1);
         else alert('Please choose an option.');
@@ -39,17 +38,16 @@ jQuery(function ($) {
 
     // Skip
     $(document).on('click', '#racket-wizard .skip', function (e) {
-        e.preventDefault(); show(current + 1);
+        show(current + 1);
     });
 
     // Previous
     $(document).on('click', '.goback .prev', function (e) {
-        e.preventDefault(); show(current - 1);
+        show(current - 1);
     });
 
     // Submit
     $(document).on('click', '#racket-wizard .finish', function (e) {
-        e.preventDefault();
 
         const email = $('#step_email').val().trim();
         const checkbox = $('#confirm_mail_sub').prop('checked');

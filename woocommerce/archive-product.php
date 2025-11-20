@@ -245,7 +245,7 @@ if (woocommerce_product_loop()) {
             <div class="d-block d-md-none">
                 <div class="d-flex justify-content-between flex-wrap">
                     <!-- Result Container -->
-                    <div id="results-count" class="mb-3 order-2 order-md-0">
+                    <div id="results-count-mobile" class="mb-3 order-2 order-md-0">
                         <?php
                         if ($query->have_posts()) :
                             echo 'Rodoma: ' . $query->post_count . ' iš ' . $query->found_posts;

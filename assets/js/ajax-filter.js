@@ -51,6 +51,7 @@
                 // Update the page with the filtered products and count
                 $('#product-results').html(response.html);
                 $('#results-count').html(response.count);
+                $('#results-count-mobile').html(response.count);
                 $('#priceRangeVal').text($('#price_range').val());
                 $('#pagination-wrapper').html(response.pagination);// update pagination
                 displayActiveFilters(formData);
